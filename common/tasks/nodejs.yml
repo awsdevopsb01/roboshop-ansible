@@ -34,4 +34,4 @@
 
 - name: Load mongodb schema - Import tasks into this play
   ansible.builtin.import_tasks:
-    file: schema-setup.yml
+    file: schema_setup.yml
