@@ -1,0 +1,37 @@
+#  func_setup_nodejs() {
+#    func_setup_header "Setup NodeJs Version"
+#    dnf module disable nodejs -y &>> $log_path
+#    dnf module enable nodejs:18 -y &>> $log_path
+#    func_status_check $?
+#
+#    func_setup_header "Install NodeJs "
+#    dnf install nodejs -y &>> $log_path
+#    func_status_check $?
+#
+#    func_app_setup
+#
+#    func_setup_header "Install Dependencies "
+#    npm install &>> $log_path
+#    func_status_check $?
+#
+#    func_load_schema
+#    func_start_systemd
+
+
+- name: Install NodeJs
+  ansible.builtin.yum:
+    name: nodejs
+    state: installed
+
+- name: Import app_setup tasks into this play
+  ansible.builtin.import_tasks:
+    file: app_setup.yml
+
+- name: Install nodeJs dependencies
+  ansible.builtin.shell: npm install
+  args:
+    chdir: /app
+
+- name: Load mongodb schema - Import tasks into this play
+  ansible.builtin.import_tasks:
+    file: schema-setup.yml

@@ -1,0 +1,23 @@
+#    if [ "$load_schema" == "mysql" ]; then
+#    func_setup_header "Install Mysql"
+#    dnf install mysql -y &>> $log_path
+#    func_status_check $?
+#
+#    func_setup_header "Load Mysql Schema"
+#    mysql -h mysql-dev.nldevopsb01.online -uroot -pRoboShop@1 < /app/schema/"${component}".sql &>> $log_path
+#    func_status_check $?
+#    fi
+#  }
+
+- name: Copy the mongodb repo file
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install mongodb
+  ansible.builtin.yum:
+    name: mongodb-org-shell
+    state: installed
+
+- name: Load Mongo schema
+  ansible.builtin.shell: mongo --host {{ lookup('aws_ssm', 'dev.catalogue.mongodb.nldevopsb01_endpoint', region='us-east-1' ) }} </app/schema/"${component}".js
