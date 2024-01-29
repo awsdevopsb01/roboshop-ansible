@@ -18,6 +18,7 @@
 #    func_start_systemd
 
 #- name: configuring nodeJs Repos
+#  ansible.builtin.shell:
 
 - name: Install NodeJs
   ansible.builtin.yum:
