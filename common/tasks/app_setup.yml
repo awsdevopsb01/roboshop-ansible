@@ -1,3 +1,7 @@
+- name: print component value
+  ansible.builtin.debug:
+    msg : Component - {{ component }}
+
 - name: Create roboshop functional user
   ansible.builtin.user:
     name: "{{ app_user }}"

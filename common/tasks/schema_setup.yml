@@ -8,9 +8,6 @@
 #    func_status_check $?
 #    fi
 #  }
-- name: print component value
-  ansible.builtin.debug:
-    msg : Component - {{ component }}
 
 - name: Copy the mongodb repo file
   ansible.builtin.copy:
