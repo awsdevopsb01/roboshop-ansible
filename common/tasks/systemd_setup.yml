@@ -1,8 +1,5 @@
 - name: Copy {{ component }} service file
-  ansible.builtin.copy: {{ component }}.service
-
-- name: Copy {{ component }} service file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: "{{ component }}.service"
     dest: /etc/systemd/system/{{ component }}.service
 
@@ -12,3 +9,4 @@
     name: "{{ catalogue }}"
     enabled: true
     daemon_reload: true
+
