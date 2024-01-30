@@ -1,3 +1,0 @@
-- name: Roboshop roles demo
-  ansible.builtin.debug:
-    msg: Hello Roboshop
