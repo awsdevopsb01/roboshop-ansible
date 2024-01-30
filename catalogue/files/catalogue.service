@@ -4,9 +4,10 @@ Description = Catalogue Service
 [Service]
 User=roboshop
 Environment=MONGO=true
-Environment=MONGO_URL="mongodb://mongodb-dev.nldevopsb01.online:27017/catalogue"
+Environment=MONGO_URL={{ lookup('aws_ssm', 'dev.catalogue.mongodb.nldevopsb01_host', region='us-east-1' ) }}
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=catalogue
 
 [Install]
 WantedBy=multi-user.target
+
