@@ -25,3 +25,14 @@
       ansible.builtin.shell: mongo --host {{ lookup('aws_ssm', 'dev.catalogue.mongodb.nldevopsb01_endpoint', region='us-east-1' ) }} </app/schema/{{ component }}.js
   when: schema_setup == "mongodb"
 
+- name: Schema Setup for MySQL
+  block:
+    - name: Install MySQL
+      ansible.builtin.yum:
+        name: mysql
+        state: installed
+
+    - name: Load MySQL schema
+      ansible.builtin.shell: mysql -h {{ lookup('aws_ssm', 'dev.shipping.mysql.nldevopsb01_endpoint', region='us-east-1' ) }} -u{{ lookup('aws_ssm', 'dev.shipping.mysql.nldevopsb01_user', region='us-east-1' ) }} -p{{ lookup('aws_ssm', 'dev.shipping.mysql.nldevopsb01_pwd', region='us-east-1' ) }} < /app/schema/{{component}}.sql &>> $log_path
+  when: schema_setup == "mysql"
+

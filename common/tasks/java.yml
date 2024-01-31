@@ -1,0 +1,38 @@
+#func_setup_header "Install Maven"
+#dnf install maven -y &>> $log_path
+#func_status_check $?
+#
+#func_app_setup
+#
+#func_setup_header "Install Dependencies"
+#mvn clean package &>> $log_path
+#func_status_check $?
+#
+#func_setup_header "Move Shipping.jar file"
+#mv target/shipping-1.0.jar shipping.jar &>> $log_path
+#func_status_check $?
+#
+#func_load_schema
+#func_start_systemd
+
+- name: Install NodeJs
+  ansible.builtin.yum:
+    name: maven
+    state: installed
+
+- name: Import app_setup tasks into this play
+  ansible.builtin.import_tasks:
+    file: app_setup.yml
+
+- name: Install Maven dependencies
+  ansible.builtin.shell: mvn clean package; mv target/{{component}}-1.0.jar {{component}}.jar
+  args:
+    chdir: /app
+
+- name: Load mysql schema - Import tasks into this play
+  ansible.builtin.import_tasks:
+    file: schema_setup.yml
+
+- name: Systemd Enable & Restart Service
+  ansible.builtin.import_tasks:
+    file: systemd_setup.yml
