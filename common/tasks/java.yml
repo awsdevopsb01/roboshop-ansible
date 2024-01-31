@@ -15,7 +15,7 @@
 #func_load_schema
 #func_start_systemd
 
-- name: Install NodeJs
+- name: Install Maven
   ansible.builtin.yum:
     name: maven
     state: installed

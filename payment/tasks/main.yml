@@ -1,3 +1,4 @@
-- name: Roboshop roles demo
-  ansible.builtin.debug:
-    msg: Hello Roboshop
+- name: Run tasks from common role
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: python

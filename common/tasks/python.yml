@@ -1,0 +1,32 @@
+#func_setup_header "Install Python"
+#dnf install python36 gcc python3-devel -y &>> $log_path
+#func_status_check $?
+#
+#func_app_setup
+#
+#func_setup_header "Install Dependencies"
+#pip3.6 install -r requirements.txt &>> $log_path
+#func_status_check $?
+#
+#func_start_systemd
+
+- name: Install Python
+  ansible.builtin.yum:
+    name:
+      - python36
+      - gcc
+      - python3-devel
+    state: installed
+
+- name: Import app_setup tasks into this play
+  ansible.builtin.import_tasks:
+    file: app_setup.yml
+
+- name: Install Maven dependencies
+  ansible.builtin.shell: pip3.6 install -r requirements.txt
+  args:
+    chdir: /app
+
+- name: Systemd Enable & Restart Service
+  ansible.builtin.import_tasks:
+    file: systemd_setup.yml

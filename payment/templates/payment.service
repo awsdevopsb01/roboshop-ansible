@@ -1,0 +1,20 @@
+[Unit]
+Description=Payment Service
+
+[Service]
+User=root
+WorkingDirectory=/app
+Environment={{ lookup('aws_ssm', 'dev.payment.cart.nldevopsb01_host', region='us-east-1' ) }}
+Environment={{ lookup('aws_ssm', 'dev.payment.cart.nldevopsb01_port', region='us-east-1' ) }}
+Environment={{ lookup('aws_ssm', 'dev.payment.user.nldevopsb01_host', region='us-east-1' ) }}
+Environment={{ lookup('aws_ssm', 'dev.payment.user.nldevopsb01_port', region='us-east-1' ) }}
+Environment={{ lookup('aws_ssm', 'dev.payment.rabbitmq.nldevopsb01_host', region='us-east-1' ) }}
+Environment={{ lookup('aws_ssm', 'dev.payment.rabbitmq.nldevopsb01_user', region='us-east-1' ) }}
+Environment={{ lookup('aws_ssm', 'dev.payment.rabbitmq.nldevopsb01_pwd', region='us-east-1' ) }}
+
+ExecStart=/usr/local/bin/uwsgi --ini payment.ini
+ExecStop=/bin/kill -9 $MAINPID
+SyslogIdentifier=payment
+
+[Install]
+WantedBy=multi-user.target
