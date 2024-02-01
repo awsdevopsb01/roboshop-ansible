@@ -1,14 +1,3 @@
-#    if [ "$load_schema" == "mysql" ]; then
-#    func_setup_header "Install Mysql"
-#    dnf install mysql -y &>> $log_path
-#    func_status_check $?
-#
-#    func_setup_header "Load Mysql Schema"
-#    mysql -h mysql-dev.nldevopsb01.online -uroot -pRoboShop@1 < /app/schema/"${component}".sql &>> $log_path
-#    func_status_check $?
-#    fi
-#  }
-
 - name: Schema Setup for mongodb
   block:
     - name: Copy the mongodb repo file
