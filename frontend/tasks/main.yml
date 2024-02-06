@@ -29,3 +29,8 @@
     state: restarted
     name: nginx
     enabled: true
+
+- name: Run tasks from elk role
+  ansible.builtin.import_role:
+    name: elk
+    tasks_from: elastic

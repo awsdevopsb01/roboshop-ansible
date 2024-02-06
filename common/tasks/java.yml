@@ -1,20 +1,3 @@
-#func_setup_header "Install Maven"
-#dnf install maven -y &>> $log_path
-#func_status_check $?
-#
-#func_app_setup
-#
-#func_setup_header "Install Dependencies"
-#mvn clean package &>> $log_path
-#func_status_check $?
-#
-#func_setup_header "Move Shipping.jar file"
-#mv target/shipping-1.0.jar shipping.jar &>> $log_path
-#func_status_check $?
-#
-#func_load_schema
-#func_start_systemd
-
 - name: Install Maven
   ansible.builtin.yum:
     name: maven
