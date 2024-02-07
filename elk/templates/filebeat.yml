@@ -23,7 +23,7 @@ filebeat.inputs:
 
     # Paths that should be crawled and fetched. Glob based paths.
     paths:
-      - /var/log/nginx/access.log
+      - {{ log_file }}
 # ============================== Filebeat modules ==============================
 
 filebeat.config.modules:
