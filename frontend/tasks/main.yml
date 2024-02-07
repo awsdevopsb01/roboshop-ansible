@@ -33,4 +33,4 @@
 - name: Run tasks from elk role
   ansible.builtin.import_role:
     name: elk
-    tasks_from: elastic
+    tasks_from: filebeat
