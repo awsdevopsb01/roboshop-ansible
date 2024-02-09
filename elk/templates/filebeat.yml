@@ -34,7 +34,6 @@ filebeat.config.modules:
   reload.enabled: false
 
 # ======================= Elasticsearch template setting =======================
-
 setup.template.settings:
   index.number_of_shards: 1
 # =================================== Kibana ===================================
@@ -46,7 +45,7 @@ setup.kibana:
 # ================================== Outputs ===================================
 
   # ------------------------------ Logstash Output -------------------------------
-   output.logstash:
+output.logstash:
    hosts: ["172.31.85.232:5044"]
 
 # ================================= Processors =================================
