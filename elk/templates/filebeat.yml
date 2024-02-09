@@ -26,6 +26,9 @@ filebeat.inputs:
       - {{ log_file }}
 # ============================== Filebeat modules ==============================
 
+fields:
+  component: {{ component_name }}
+
 filebeat.config.modules:
   # Glob pattern for configuration loading
   path: ${path.config}/modules.d/*.yml
