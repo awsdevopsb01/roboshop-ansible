@@ -26,8 +26,8 @@ filebeat.inputs:
       - {{ log_file }}
 # ============================== Filebeat modules ==============================
 
-fields:
-  component: {{ component_name }}
+    fields:
+      component: {{ component_name }}
 
 filebeat.config.modules:
   # Glob pattern for configuration loading
