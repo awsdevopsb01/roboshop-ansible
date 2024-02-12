@@ -24,13 +24,13 @@
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
+- name: Run tasks from elk role
+  ansible.builtin.import_role:
+    name: elk
+    tasks_from: filebeat
+
 - name: Start and Run nginx
   ansible.builtin.systemd_service:
     state: restarted
     name: nginx
     enabled: true
-
-- name: Run tasks from elk role
-  ansible.builtin.import_role:
-    name: elk
-    tasks_from: filebeat
