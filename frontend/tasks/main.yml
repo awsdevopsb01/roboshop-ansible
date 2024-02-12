@@ -24,6 +24,11 @@
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
+- name: Copy the nginx configuration file
+  ansible.builtin.template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
 - name: Run tasks from elk role
   ansible.builtin.import_role:
     name: elk
