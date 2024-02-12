@@ -53,4 +53,4 @@ output.logstash:
 
 processors:
   - drop_fields:
-    fields: ["agent.ephemeral_id", "agent.hostname","agent.id","agent.name","agent.type","agent.version","ecs.version","input.type","log.offset"]
+      fields: ["agent.ephemeral_id", "agent.hostname","agent.id","agent.name","agent.type","agent.version","ecs.version","input.type","log.offset"]
