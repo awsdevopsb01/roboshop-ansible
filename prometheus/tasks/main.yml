@@ -1,0 +1,10 @@
+- name: Copy the logstash configuration file
+  ansible.builtin.template:
+    src: prometheus.yml
+    dest: /opt/prometheus/prometheus.yml
+
+- name: Restart prometheus Service
+  ansible.builtin.systemd_service:
+    name: prometheus
+    enabled: true
+    state: restarted
