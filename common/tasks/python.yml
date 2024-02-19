@@ -30,3 +30,8 @@
 - name: Systemd Enable & Restart Service
   ansible.builtin.import_tasks:
     file: systemd_setup.yml
+
+- name: Run tasks from prometheus role
+  ansible.builtin.import_role:
+    name: prometheus
+    tasks_from: node-exporter
