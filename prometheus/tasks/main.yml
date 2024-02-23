@@ -1,6 +1,6 @@
 - name: Copy the Prometheus/alerts configuration file
   ansible.builtin.template:
-    src: {{item}}.yml
+    src: "{{item}}.yml"
     dest: /opt/prometheus/{{item}}.yml
   loop:
     - prometheus
