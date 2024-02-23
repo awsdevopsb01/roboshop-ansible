@@ -1,7 +1,10 @@
-- name: Copy the logstash configuration file
+- name: Copy the Prometheus/alerts configuration file
   ansible.builtin.template:
-    src: prometheus.yml
-    dest: /opt/prometheus/prometheus.yml
+    src: "{{item}}".yml
+    dest: /opt/prometheus/{{item}}.yml
+  loop:
+    - prometheus
+    - alert
 
 - name: Restart prometheus Service
   ansible.builtin.systemd_service:
