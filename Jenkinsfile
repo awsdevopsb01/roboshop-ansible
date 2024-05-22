@@ -5,16 +5,21 @@ pipeline {
     }
    }
 
+   options {
+     ansiColor('xterm')
+   }
+
 parameters {
-  choice(name: 'env', choices ['dev','prod'], description: 'Pick your choice of Environment')
+  choice(name: 'env', choices: ['dev','prod'], description: 'Pick your choice of Environment')
   choice(name: 'component',defaultValue:'', description: 'Component Name')
 }
 
 stages {
-  stage ('Ansible')
-    steps {
-      sh 'ansible-playbook -i ${component}-${dev}.awsdevopsb01.online, roboshop.yml -e ansible_user=centos -e ansible_password=DevOps321 -e env=${env}'
-    }
+  stage ('Ansible') {
+      steps {
+        sh 'ansible-playbook -i ${component}-${dev}.awsdevopsb01.online, roboshop.yml -e ansible_user=centos -e ansible_password=DevOps321 -e env=${env}'
+      }
+  }
  }
 
 post {
@@ -22,5 +27,4 @@ post {
     cleanWs()
   }
 }
-
 }
