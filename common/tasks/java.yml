@@ -1,16 +1,18 @@
-- name: Install Maven
-  ansible.builtin.yum:
-    name: maven
-    state: installed
+# This step not required, as we install maven through build pipeline
+#- name: Install Maven
+#  ansible.builtin.yum:
+#    name: maven
+#    state: installed
 
 - name: Import app_setup tasks into this play
   ansible.builtin.import_tasks:
     file: app_setup.yml
 
-- name: Install Maven dependencies
-  ansible.builtin.shell: mvn clean package; mv target/{{component}}-1.0.jar {{component}}.jar
-  args:
-    chdir: /app
+# These dependencies are installed through build pipeline
+#- name: Install Maven dependencies
+#  ansible.builtin.shell: mvn clean package; mv target/{{component}}-1.0.jar {{component}}.jar
+#  args:
+#    chdir: /app
 
 - name: Load mysql schema - Import tasks into this play
   ansible.builtin.import_tasks:
