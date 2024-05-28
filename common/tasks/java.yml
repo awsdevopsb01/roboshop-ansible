@@ -4,6 +4,10 @@
 #    name: maven
 #    state: installed
 
+- name: Install Java
+  ansible.builtin.yum:
+    name: java-17-openjdk
+
 - name: Import app_setup tasks into this play
   ansible.builtin.import_tasks:
     file: app_setup.yml
