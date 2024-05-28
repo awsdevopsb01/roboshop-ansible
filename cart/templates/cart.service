@@ -2,9 +2,9 @@
 Description = Cart Service
 [Service]
 User=roboshop
-Environment={{ lookup('aws_ssm', 'dev.cart.ecache.nldevopsb01_host', region='us-east-1' ) }}
-Environment={{ lookup('aws_ssm', 'dev.cart.catalogue.nldevopsb01_url', region='us-east-1' ) }}
-Environment={{ lookup('aws_ssm', 'dev.cart.catalogue.nldevopsb01_port_alb', region='us-east-1' ) }}
+Environment={{ lookup('aws_ssm', '{{ env }}.cart.ecache.nldevopsb01_host', region='us-east-1' ) }}
+Environment={{ lookup('aws_ssm', '{{ env }}.cart.catalogue.nldevopsb01_url', region='us-east-1' ) }}
+Environment={{ lookup('aws_ssm', '{{ env }}.cart.catalogue.nldevopsb01_port_alb', region='us-east-1' ) }}
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=cart
 
