@@ -11,7 +11,7 @@ pipeline {
 
 parameters {
   choice(name: 'env', choices: ['dev','prod'], description: 'Pick your choice of Environment')
-  choice(name: 'component', defaultValue:'', description: 'Component Name')
+  string(name: 'component', defaultValue:'', description: 'Component Name')
 }
 
 stages {
